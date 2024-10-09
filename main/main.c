@@ -60,7 +60,7 @@ void CheckNeighbors(sandblock *block) { // This function checks the blocks neigh
     } else if (grid[xCords + 1][yCords - 1] == 0) { // Checks if there is an empty space diagonally down to the left, and if there is, it will move there.
         grid[xCords][yCords] = 0;
         grid[xCords + 1][yCords - 1] = 1;
-        block->xCords--;
+        block->xCords++;
         block->yCords--;
     } else { // If there are no spaces to move the sand block, it will stop.
         return;
