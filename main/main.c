@@ -1,5 +1,6 @@
 // This is my first project in C, and I started coding in it just yesterday (6/14/2024)
 // I'll probably improve it in the future.
+// 10/8/2024 fixed it lol i was really dumb with this and im not fixing this further.
 
 #include <stdio.h>
 
@@ -11,8 +12,8 @@ int grid[][7] = { // The grid.
     {2, 2, 2, 2, 2, 2, 2}, // 0
     {2, 0, 0, 0, 0, 0, 2}, // 1
     {2, 0, 0, 0, 0, 0, 2}, // 2
-    {2, 0, 0, 0, 0, 0, 2}, // 3
-    {2, 0, 0, 0, 0, 0, 2}, // 4
+    {2, 0, 0, 0, 2, 0, 2}, // 3
+    {2, 0, 0, 2, 0, 0, 2}, // 4
     {2, 0, 0, 0, 0, 0, 2}, // 5
     {2, 0, 0, 0, 0, 0, 2}, // 6
     {2, 0, 0, 0, 0, 0, 2}, // 7
@@ -52,15 +53,13 @@ void CheckNeighbors(sandblock *block) { // This function checks the blocks neigh
         grid[xCords][yCords] = 0;
         grid[xCords + 1][yCords] = 1;
         block->xCords++;
-    } else if (grid[xCords + 1][yCords + 1] == 0) { // Checks if there is an empty space diagonally down to the right, and if there is, it will move there.
+    } else if (grid[xCords][yCords + 1] == 0) { // Checks if there is an empty space to the right, and if there is, it will move there.
         grid[xCords][yCords] = 0;
-        grid[xCords + 1][yCords + 1] = 1;
-        block->xCords++;
+        grid[xCords][yCords + 1] = 1;
         block->yCords++;
-    } else if (grid[xCords + 1][yCords - 1] == 0) { // Checks if there is an empty space diagonally down to the left, and if there is, it will move there.
+    } else if (grid[xCords][yCords - 1] == 0) { // Checks if there is an empty space to the left, and if there is, it will move there.
         grid[xCords][yCords] = 0;
-        grid[xCords + 1][yCords - 1] = 1;
-        block->xCords++;
+        grid[xCords][yCords - 1] = 1;
         block->yCords--;
     } else { // If there are no spaces to move the sand block, it will stop.
         return;
